@@ -1,12 +1,33 @@
-const reducer = (state = { cash: 10 }, action) => {
+const ADD_CUSTOMER = 'ADD_CUSTOMER';
+const DELETE_CUSTOMER = 'DELETE_CUSTOMER';
+
+const customerReducer = (state = { customers: [] }, action) => {
 	switch (action.type) {
-		case 'ADD':
-			return { ...state, cash: state.cash + action.payload };
-		case 'SUBSTRACT':
-			return { ...state, cash: state.cash - action.payload };
+		case ADD_CUSTOMER:
+			return {
+				...state,
+				customers: [...state.customers, action.payload],
+			};
+		case DELETE_CUSTOMER:
+			return {
+				...state,
+				customers: state.customers.filter(
+					(customer) => customer.id !== action.payload,
+				),
+			};
 		default:
 			return state;
 	}
 };
 
-export default reducer;
+const addCustomerAction = (payload) => ({
+	type: ADD_CUSTOMER,
+	payload,
+});
+
+const deleteCustomerAction = (payload) => ({
+	type: DELETE_CUSTOMER,
+	payload,
+});
+
+export { customerReducer, addCustomerAction, deleteCustomerAction };
