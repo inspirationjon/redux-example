@@ -1,8 +1,14 @@
 const ADD_CUSTOMER = 'ADD_CUSTOMER';
 const DELETE_CUSTOMER = 'DELETE_CUSTOMER';
+const ADD_MANY_CUSTOMERS = 'ADD_MANY_CUSTOMERS';
 
 const customerReducer = (state = { customers: [] }, action) => {
 	switch (action.type) {
+		case ADD_MANY_CUSTOMERS:
+			return {
+				...state,
+				customers: [...state.customers, ...action.payload],
+			};
 		case ADD_CUSTOMER:
 			return {
 				...state,
@@ -20,6 +26,11 @@ const customerReducer = (state = { customers: [] }, action) => {
 	}
 };
 
+const addManyCustomersAction = (payload) => ({
+	type: ADD_MANY_CUSTOMERS,
+	payload,
+});
+
 const addCustomerAction = (payload) => ({
 	type: ADD_CUSTOMER,
 	payload,
@@ -30,4 +41,9 @@ const deleteCustomerAction = (payload) => ({
 	payload,
 });
 
-export { customerReducer, addCustomerAction, deleteCustomerAction };
+export {
+	addManyCustomersAction,
+	customerReducer,
+	addCustomerAction,
+	deleteCustomerAction,
+};

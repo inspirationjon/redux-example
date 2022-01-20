@@ -6,6 +6,8 @@ import {
 	deleteCustomerAction,
 } from '../../store/customerReducer';
 
+import { fetchCustomers } from '../../store/asyncActions';
+
 function Home() {
 	const dispatch = useDispatch();
 	const cash = useSelector((state) => state.cash.cash);
@@ -43,6 +45,8 @@ function Home() {
 
 			<div>
 				<button onClick={addCustomer}>Add Client</button>
+
+				<button onClick={() => dispatch(fetchCustomers())}>More</button>
 
 				<ul>
 					{customers.length > 0 &&
