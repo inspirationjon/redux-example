@@ -1,5 +1,3 @@
-import { createStore } from 'redux';
-
 const reducer = (state = { cash: 10 }, action) => {
 	switch (action.type) {
 		case 'ADD':
@@ -11,6 +9,4 @@ const reducer = (state = { cash: 10 }, action) => {
 	}
 };
 
-const store = createStore(reducer);
-
-export { store };
+export default reducer;
